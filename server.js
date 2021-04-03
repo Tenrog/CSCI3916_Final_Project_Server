@@ -52,10 +52,9 @@ request(options, function (error, response, body) {
 
    console.log(body);
 });
+});
     
- router.post('/search', function (req, res) {
-     var searchBody = {
-         
+
      
 
 app.use('/', router);
