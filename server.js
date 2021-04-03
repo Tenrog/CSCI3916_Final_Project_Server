@@ -5,6 +5,7 @@ Description: Web API scaffolding for Movie API
  */
 
 var express = require('express');
+var fatsecret = require('fatsecret');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var authController = require('./auth');
@@ -24,36 +25,19 @@ app.use(passport.initialize());
 
 var router = express.Router();
 
-
+const fatAPI = new require('fatsecret')('156dee60d30e47658801e359190329a7', 'e74728e4b4b44d6db0a7ada9a8da5457');
 
 router.post('/token', function (req, res) {
-    var request = require("request");
-clientID = 'YOUR_CLIENT_ID'
-clientSecret = 'YOUR_CLIENT_SECRET'
-
-var options = {
-   method: 'POST',
-   url: 'https://oauth.fatsecret.com/connect/token',
-   method : 'POST',
-   auth : {
-      user : "156dee60d30e47658801e359190329a7",
-      password : "e74728e4b4b44d6db0a7ada9a8da5457"
-   },
-   headers: { 'content-type': 'application/json'},
-   form: {
-      'grant_type': 'client_credentials',
-      'scope' : 'basic'
-   },
-   json: true
-};
-
-request(options, function (error, response, body) {
-   if (error) throw new Error(error);
-
-   console.log(body);
+   fatAPI
+       .method('foods.search', {
+          search_expression: req.body.term,
+          max_results: 10
+       })
+       .then(function (results) {
+          console.log(results.foods.food);
+       })
+       .catch(err => console.error(err));
 });
-});
-    
 
      
 

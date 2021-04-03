@@ -23,6 +23,7 @@
     "dotenv": "^8.2.0",
     "err": "^2.1.12",
     "express": "^4.17.1",
+    "fatsecret": "^1.0.2",
     "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
